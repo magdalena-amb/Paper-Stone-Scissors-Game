@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="index.css">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Paper-Stone-Scissors Game</title>
+</head>
+<body>
+  <div class='container'>
+      <div class="card">
+          <div class='buttons-container'>
+              <button id='paper' type="button" class="btn btn-primary btn-lg">Paper</button>
+              <button id='stone' type="button" class="btn btn-secondary btn-lg">Stone</button>
+              <button id='scissors' type="button" class="btn btn-success btn-lg">Scissors</button>
+          </div>
+          
+          <div class="card-body">
+            <h5 class="card-title">Click to play!</h5>
+            <div id='output'></div><br>
+            <div class="card-text">Total Score:<div id='result'> 0:0 </div></div><br>
+            <button id='reset' class="btn btn-primary">NEW GAME </button>
+          </div>
+        </div>
+  </div>
+    
+  <script type='text/javascript' src='index.js'></script>
+</body>
+</html>
