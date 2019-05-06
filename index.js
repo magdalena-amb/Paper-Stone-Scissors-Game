@@ -9,16 +9,16 @@ var btnScissors = document.getElementById('scissors');
 var btnReset = document.getElementById('reset');
 var output = document.getElementById('output');
 var result = document.getElementById('result');
+var gameOver= document.getElementById('gameOver');
 var totalRounds;
 
 var player1;
 var player2;
 var p1Score;
 var p2Score;
-var gameOver= true;
 
 function reset(){
-  gameOver = false;
+  gameOver.innerHTML='';
   p1Score = 0;
   p2Score = 0;
   btnPaper.disabled = false;
@@ -94,15 +94,14 @@ console.log(player2);
   result.innerHTML= p1Score + ':' + p2Score;
 
   if (p1Score==totalRounds || p2Score==totalRounds) {
-    gameOver = true;
     btnPaper.disabled = true;
     btnStone.disabled = true;
     btnScissors.disabled = true;
     if (p1Score > p2Score){
-      result.insertAdjacentHTML('afterend','YOU WON THE GAME!!!');
+      gameOver.innerHTML='YOU WON THE GAME!!!';
     }
     else {
-      result.insertAdjacentHTML('afterend','COMPUTER WON THE GAME!!!');
+      gameOver.innerHTML='COMPUTER WON THE GAME!!!';
     }
     log("Game over, please press the new game button!"); 
   };
