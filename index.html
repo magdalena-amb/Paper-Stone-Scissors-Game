@@ -23,7 +23,7 @@
             <div class="card-text">Total Score:
               <div id='result'> 0:0 
               </div>
-              <div id='gameOver'></div>
+              <!-- <div id='gameOver'></div> -->
             </div><br>
             <button id='reset' class="btn btn-primary">NEW GAME </button>
           </div>
@@ -43,30 +43,25 @@
             <th>Total Score</th>
           </tr>
         </table>
-      
     </div>
-    
     <div class="modal" id="newGameModal">
       <a href="#" class="close">x</a>
-      <header>New Game:</header>
+      <header>NEW GAME</header>
       <div class='content'>
         <form>
           <div class="form-group">
             <label for="name">Your name:</label>
-            <input type="text" class="form-control" id="name"  placeholder="your name">
-            
+            <input type="text" class="form-control" id="name"> 
           </div>
           <div class="form-group">
-            <label for="rounds">Number of rounds:</label>
-            <input type="password" class="form-control" aria-describedby="roundsHelp" id="rounds" placeholder="number of rounds">
+            <label for="rounds">Number of rounds you wish to play:</label>
+            <input type="number" class="form-control" id="rounds">
           </div>
-          <small id="roundsHelp" class="form-text text-muted">How many winning rounds do you wish to play?</small>
           <button id='startBtn' type="submit" class="btn btn-primary">Start</button>
         </form>
       </div>
     </div> 
-  </div>
-    
+  </div>  
   <script type='text/javascript' src='js/script.js'></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 //   reset();
 // };
 var params = {
-  //playerName : '',
+  playerName : '',
   totalRounds  : 0,
   roundsPlayed : 0,
   p1RoundScore : 0,
@@ -21,22 +21,26 @@ var output = document.getElementById('output');
 var result = document.getElementById('result');
 
 //modal //
-
 var newGameModal = document.getElementById('newGameModal');
+var startBtn = document.getElementById('startBtn');
+startBtn.addEventListener('click', function(e){
+  e.preventDefault();
+  params.totalRounds = document.getElementById('rounds').value;
+  params.playerName = document.getElementById('name').value;
+  console.log(params.totalRounds);
+  console.log(params.playerName);
+  hideModal(e);
+});
 
-//var startBtn = document.getElementById('startBtn');
 var gameOverModal = document.getElementById('gameOverModal');
-//var newGameModal = document.getElementById('newGameModal');
 var progressTable = document.getElementById('progressTable');
 
 var modals = document.querySelectorAll('.modal');
-
 for(var i = 0; i < modals.length; i++){
   modals[i].addEventListener('click', function(event){
     event.stopPropagation();
   });
 }
-
 var showModal = function(event, modal, content){
   event.preventDefault();
   document.querySelector('#modal-overlay').classList.add('show');
@@ -48,10 +52,8 @@ var showModal = function(event, modal, content){
   modal.classList.add('show');
   if(content){
     modal.querySelector('.content').textContent = content;
-  }
-  
+  } 
 };
-
 // var modalLinks = document.querySelectorAll('.show-modal');
 // for(var i = 0; i < modalLinks.length; i++){
 //   modalLinks[i].addEventListener('click', showModal);
@@ -68,18 +70,19 @@ document.querySelector('#modal-overlay').addEventListener('click', hideModal);
 
 
 
-
 function reset(){
-  //gameOver.innerHTML='';
   params.playerName = '';
   params.p1Score = 0;
   params.p2Score = 0;
   params.p1RoundScore = 0;
   params.p2RoundScore = 0;
   params.roundsPlayed = 0;
+  params.totalRounds = 0;
   params.p1Move = null;
   params.p2Move = null;
   params.progress = [];
+  document.getElementById('rounds').value ='';
+  document.getElementById('name').value = '';
   buttons.forEach(function (item) {
     item.disabled = false;
   });
@@ -91,7 +94,6 @@ function reset(){
   }
   log('');
   result.innerHTML= params.p1Score + ':' + params.p2Score;
-  params.totalRounds = window.prompt('How many rounds do you wish to play?');
 };
 
 function move2(){
@@ -136,32 +138,32 @@ console.log(params.p2Move);
     params.p2RoundScore = 0;
   }
   else if (params.p1Move == 'stone' && params.p2Move == 'scissors'){
-    log('YOU WON: you played ROCK, computer played SCISSORS');
+    log(`${params.playerName} WON: you played ROCK, computer played SCISSORS`);
     params.p1Score++;
     params.p1RoundScore = 1;
     params.p2RoundScore = 0;
   }
   else if (params.p1Move == 'scissors' && params.p2Move == 'paper'){
-    log('YOU WON: you played scissors, computer played paper');
+    log(`${params.playerName} WON: you played scissors, computer played paper`);
     params.p1Score++;
     params.p1RoundScore = 1;
     params.p2RoundScore = 0;
   }
   else if (params.p2Move == 'paper' && params.p1Move == 'stone'){
-    log('COMPUTER WON: you played stone, computer played paper');
+    log(`COMPUTER WON: ${params.playerName} played stone, computer played paper`);
     params.p2Score++;
     params.p1RoundScore = 0;
     params.p2RoundScore = 1;
     
   }
   else if (params.p2Move =='stone' && params.p1Move =='scissors'){
-    log('COMPUTER WON: you played scissors, computer played paper');
+    log(`COMPUTER WON: ${params.playerName} played scissors, computer played paper`);
     params.p2Score++;
     params.p1RoundScore = 0;
     params.p2RoundScore = 1;
   }
   else if (params.p2Move =='scissors' && params.p1Move == 'paper'){
-    log('COMPUTER WON: you played paper, computer played scissors');
+    log(`COMPUTER WON: ${params.playerName}  played paper, computer played scissors`);
     params.p2Score++;
     params.p1RoundScore = 0;
     params.p2RoundScore = 1; 
@@ -194,31 +196,23 @@ console.log(params.p2Move);
     });
     var modalContent;
     if (params.p1Score > params.p2Score){
-      //gameOver.innerHTML='YOU WON THE GAME!!!';
-      modalContent = 'YOU WON THE GAME!!!';
-
+      modalContent = `${params.playerName} WON THE GAME!!!`;
     }
     else {
-      //gameOver.innerHTML='COMPUTER WON THE GAME!!!';
       modalContent = 'COMPUTER WON THE GAME!!!';
-    } 
-    //log("Game over, please press the new game button!");
+    }
     showModal(event, gameOverModal, modalContent);
-  };
-  
+  };  
 };
 
 buttons.forEach(function (item) {
   item.addEventListener('click', playerMove);
 });
 
-//var playerName = document.getElementById('name').value;
-//console.log(playerName);
-// function startGame(){
-//   reset();
-//   params.totalRounds = document.getElementById('rounds').value;
-//   playerName = document.getElementById('name').value;
-// }
-btnReset.addEventListener('click', reset);
- //btnReset.addEventListener('click', showModal(newGameModal));
+var startGame = function(){
+  reset();
+  showModal(event, newGameModal);
+}
+//btnReset.addEventListener('click', reset);
+btnReset.addEventListener('click', startGame);
 //startBtn.addEventListener('click', startGame); 
