@@ -12,9 +12,9 @@
   <div class='container'>
       <div class="card">
           <div class='buttons-container'>
-              <button id='paper' type="button" class="btn btn-primary btn-lg">Paper</button>
-              <button id='stone' type="button" class="btn btn-secondary btn-lg">Stone</button>
-              <button id='scissors' type="button" class="btn btn-success btn-lg">Scissors</button>
+              <button id='paper' data-move="paper" type="button" class="player-move btn btn-primary btn-lg">Paper</button>
+              <button id='stone' data-move="stone" type="button" class="player-move btn btn-secondary btn-lg">Stone</button>
+              <button id='scissors' data-move="scissors" type="button" class="player-move btn btn-success btn-lg">Scissors</button>
           </div>
           
           <div class="card-body">
@@ -27,7 +27,44 @@
             </div><br>
             <button id='reset' class="btn btn-primary">NEW GAME </button>
           </div>
-        </div>
+      </div>
+  </div>
+  <div class="overlay" id="modal-overlay">
+    <div class="modal" id="gameOverModal">
+      <a href="#" class="close">x</a>
+      <header>GAME OVER!</header>
+      <div class="content"></div> 
+        <table class="table table-striped table-bordered table-responsive table-condensed">
+          <tr id='progressTable'>
+            <th>Rounds Played</th>
+            <th>Your Move</th>
+            <th>Computer Move</th>
+            <th>Round Score</th>
+            <th>Total Score</th>
+          </tr>
+        </table>
+      
+    </div>
+    
+    <div class="modal" id="newGameModal">
+      <a href="#" class="close">x</a>
+      <header>New Game:</header>
+      <div class='content'>
+        <form>
+          <div class="form-group">
+            <label for="name">Your name:</label>
+            <input type="text" class="form-control" id="name"  placeholder="your name">
+            
+          </div>
+          <div class="form-group">
+            <label for="rounds">Number of rounds:</label>
+            <input type="password" class="form-control" aria-describedby="roundsHelp" id="rounds" placeholder="number of rounds">
+          </div>
+          <small id="roundsHelp" class="form-text text-muted">How many winning rounds do you wish to play?</small>
+          <button id='startBtn' type="submit" class="btn btn-primary">Start</button>
+        </form>
+      </div>
+    </div> 
   </div>
     
   <script type='text/javascript' src='js/script.js'></script>
